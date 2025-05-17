@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陆以清 - 学术主页</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .header-container {
+            display: flex;
+            flex-direction: row-reverse; /* 关键属性：反向排列 */
+            align-items: center;
+            gap: 3rem;
+            justify-content: space-between;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-avatar {
+            width: 200px;
+            height: 200px;
+            order: 1; /* 强制图片在右侧 */
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-avatar {
+                order: 0; /* 移动端恢复自然顺序 */
+            }
+        }
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.8;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        .skill-badge {
+            background: var(--primary-color);
+            color: white;
+            margin: 3px;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .pub-item {
+            transition: transform 0.3s;
+        }
+
+        .pub-item:hover {
+            transform: translateX(10px);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="header-container">
+                <!-- 图片部分 -->
+                <img src="images/photo.png" 
+                     alt="陆以清个人照片"
+                     class="profile-avatar"
+                     loading="lazy">
+
+                <!-- 文字内容 -->
+                <div class="header-text">
+                    <h1 class="display-4 mb-3">陆以清</h1>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 150-8840-5605</p>
+                        <p><i class="fas fa-envelope"></i> luyq1@shanghaitech.edu.cn</p>
+                        <!-- <div class="mt-3">
+                            <a href="#publications" class="btn btn-outline-light btn-sm">
+                                <i class="fas fa-scroll me-2"></i>查看论文
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- 主体内容 -->
+    <main class="container py-5">
+        <!-- 研究方向 -->
+        <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-bullseye me-2"></i>研究方向</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">电池管理与均衡</h5>
+                            <p class="card-text">双向Buck-Boost/LLC拓扑优化</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- 其他研究方向卡片... -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">电池模型</h5>
+                            <p class="card-text">剩余使用寿命预测</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">机器学习</h5>
+                            <!-- <p class="card-text">双向Buck-Boost/LLC拓扑优化</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育背景时间线 -->
+        <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-graduation-cap me-2"></i>教育背景</h2>
+            <div class="timeline-item">
+                <h4>浙江大学 (2016.09-2020.06)</h4>
+                <p class="text-muted">信息工程 学士 </p>
+                <ul>
+                    <li>毕业论文：基于非道路车辆的电池管理系统设计</li>
+                </ul>
+                <h4>上海科技大学 (2020.09-至今)</h4>
+                <p class="text-muted">电子科学与技术 博士 | GPA: 3.77/4.0</p>
+                <ul>
+                    <li>导师：王浩宇教授</li>
+                    <li>博士课题：基于片段历史数据和 Transformer 网络的锂电池衰退智能预测系统</li>
+                </ul>
+            </div>
+            <!-- 浙江大学条目... -->
+        </section>
+
+        <!-- 科研经历手风琴 -->
+        <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-microscope me-2"></i>科研经历</h2>
+            <div class="accordion" id="researchAccordion">
+                <!-- 电池均衡系统 -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cellBalance">
+                            电池管理与均衡系统 (2020-2022)
+                        </button>
+                    </h3>
+                    <div id="cellBalance" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <h5>基于双向 Buck-Boost 的 Cell-to-Buffer 电池均衡技术 (2020.12-2021.08)</h5>
+                            <ul>
+                                <li>设计并实现了一种新型电池均衡系统，优化了电池组的单体电池之间的均衡路径。</li>
+                                <li>应用恒定导通时间控制方法，实现恒定电流的电池均衡，提高均衡速度。</li>
+                                <li>简化了结构和控制方法，实现均衡单元的高效率和单体电池之间能量的快速转移。</li> 
+                            </ul>
+                            <!-- 其他子项目... -->
+
+                            <h5>基于多绕组变压器和 LLC 的 Pack-to-Cell 电池均衡技术 (2022.03-2022.11)</h5>
+                            <ul>
+                                <li>多绕组变压器实现对电池组中所有单体电池的同步均衡。</li>
+                                <li>采用 LLC 作为均衡变换器提高电池组能量传递的效率，实现开环控制同步自动均衡。</li>
+                            </ul>
+
+                            <h5>基于电池模型的恢复效应预测和均衡时间优化 (2021.10-2022.05)</h5>
+                            <ul>
+                                <li>通过离线测试和等效电路模型，建立电池恢复效应的预测模型。</li>
+                                <li>使用递归最小二乘法更新和修正模型参数，实现对实际测试电池的参数实时更新和
+                                    准确建模，降低算法的运算复杂度以适用在线场景。</li>
+                                <li>预测电池需要过均衡时间和程度，以抵消电池恢复效应，实现更一致的均衡结果。</li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 其他科研项目... -->
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cellBalance">
+                            电池剩余使用寿命预测 (2022-2024)
+                        </button>
+                    </h3>
+                    <div id="cellBalance" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <h5>基于片段数据和趋势识别的电池剩余使用寿命预测 (2022.12-2023.08)</h5>
+                            <ul>
+                                <li>提出一种基于历史容量变化片段数据的电池剩余使用寿命预测方法。</li>
+                                <li>利用经验模型和粒子滤波算法进行趋势识别和模型更新，实现了使用较少的历史片段对电池失效阈值的提前预测并估计剩余使用寿命。</li>
+                                <li>研究成果已发表在 IEEE Transactions on Industrial Informatics 期刊。</li>
+                            </ul>
+                            <!-- 其他子项目... -->
+                             <h5>基于充放电特征和编码器-解码器架构的电池剩余使用寿命预测 (2023.10-2024.06)</h5>
+                             <ul>
+                                <li>引入电压、电流等多度充放电特征作为电池健康状态的指标。</li>
+                                <li>利用时间卷积网络构建编码器-解码器架构，非监督的方式自动提取关键特征</li>
+                                <li>初步根据多维特征对电池未来容量走向的预测和剩余使用寿命的估计，后续进一步使用 Transformer 改进编码器-解码器架构，实现可靠的预测结果。</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#cellBalance">
+                            电池衰退机理和衰退模式预测 (2024-至今)
+                        </button>
+                    </h3>
+                    <div id="cellBalance" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <h5>基于电池产气数据的快速衰退提前预警 (2024.01-2024.09)</h5>
+                            <ul>
+                                <li>探讨锂离子电池线性和非线性衰退模式下充放电产生的气体特征与衰退阶段之间的关联性和差异性，对电池的快速衰退阶段进行电化学机理的解释。</li>
+                                <li>使用非监督学习方法对气体特征进行降维和衰退阶段的分类，实现通过单一周期的气体数据对电池衰退轨迹拐点的预测，预测位置领先于曲线数学意义上的拐点。</li>
+                                <li>研究成果已经投稿 Joule</li>
+                            </ul>
+                            <!-- 其他子项目... -->
+                            <h5>综合气体特征和 Transformer 模型的电池剩余使用寿命预测 (2024.09-至今)</h5>
+                            <ul>
+                                <li>综合电池的充放电特征、周期容量特征和跨周期气体特征等多元异构数据。</li>
+                                <li>引入多路 Transformer 模型分别处理不同时间尺度的特征并进行融合。</li>
+                                <li>实验设计和平台搭建完成，进一步的方法验证正在进行。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 论文发表 -->
+        <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-file-alt me-2"></i>发表论文</h2>
+            <div class="list-group">
+                <a href="#" class="pub-item list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>Y. Lu, Z. Wei, and H. Wang*,"A bidirectional cell-to-buffer battery equalizer at boundary conduction mode with constant on-time control,"</strong>
+                            <div class="text-muted">Proc. IEEE Energy Convers. Congr.  Expo. (ECCE), Vancouver, BC, Oct. 2021, pp. 1405-1412.   Oral Presetation</div>
+                        </div>
+                        <span class="badge bg-primary">Q1</span>
+                    </div>
+                </a>
+                <!-- 其他论文条目... -->
+                <a href="#" class="pub-item list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>Y. Lu, H. Wang*, H. Yang, S. Chen, and W. Liu, "An RLS based battery modeling method to compensate for recovery effect in battery balancing,"</strong>
+                            <div class="text-muted">EProc. Int. Power Electron. Conf. (IPEC-ECCE Asia), Himeji, Japan, May 2022, pp. 1940-1945.   Oral Presetation</div>
+                        </div>
+                        <span class="badge bg-primary">Q1</span>
+                    </div>
+                </a>
+                <a href="#" class="pub-item list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>Y. Lu, Z. Wei, L. Liu*, H. Wang, Y. Wang, and Y. Peng, "An integrated charging equalizer 
+                                based on LLC resonant dc-dc converter-based for series-connected battery string in plug-in 
+                                hybrid electric vehicles,"</strong>
+                            <div class="text-muted">Proc. IEEE Appl. Power Electron. Conf. Expo. (APEC), Orlando, 
+                                FL, Mar. 2023, pp. 2968-2972.   Poster</div>
+                        </div>
+                        <span class="badge bg-primary">Q1</span>
+                    </div>
+                </a>
+                <a href="#" class="pub-item list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>Y. Lu, Y. Shi, Y. Liu, and H. Wang*, "Remaining useful lifetime prediction of lithium-ion 
+                                batteries based on fragment data and trend identification,"</strong>
+                            <div class="text-muted">IEEE Trans. Ind. Inform, in press
+                                (accepted Dec. 2024, IF:11.7)</div>
+                        </div>
+                        <span class="badge bg-primary">Q1</span>
+                    </div>
+                </a>
+                <a href="#" class="pub-item list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>J. Zou, Y. Lu, L. Zhang, F. Kim*, and H. Wang*, "Early warning for battery nonlinear 
+                                degradation using gas evolution data and unsupervised learning,"</strong>
+                            <div class="text-muted">Nat. Commun, in 
+                                submission (co-first author)</div>
+                        </div>
+                        <span class="badge bg-primary">Q1</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 技能展示 -->
+        <!-- <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-tools me-2"></i>专业技能</h2>
+            <div class="d-flex flex-wrap">
+                <span class="skill-badge"><i class="fab fa-python me-2"></i>Python</span>
+                <span class="skill-badge"><i class="fas fa-wave-square me-2"></i>Matlab/Simulink</span> -->
+                <!-- 其他技能... -->
+            <!-- </div>
+        </section> -->
+
+        <!-- 时间线样式教学经历 -->
+        <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-chalkboard-teacher me-2"></i>教学经历</h2>
+            <div class="timeline-item">
+                <h4>信息技术导论 助教     (2022.03-2022.06)</h4>
+                <ul>
+                    <li>协助教师准备课程内容，编写作业和测试，辅导同学相关软件使用和作业完成</li>
+                    <li>协调统筹课程不同板块助教之间的分工和工作安排</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h4>电力电子变换器建模与控制（慕课） 助教     (2023.03-2023.09)</h4>
+                <ul>
+                    <li>协助教师准备课程内容，完成慕课知识重点的板书排版和设计，协助课程录制</li>
+                    <li>完成慕课视频的后期剪辑、添加字幕以及校对工作</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="mb-5">
+            <h2 class="text-primary mb-4"><i class="fas fa-award me-2"></i>所获奖项</h2>
+            
+            <!-- 时间线容器 -->
+            <div class="awards-timeline">
+                <!-- 2024年奖项 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-year">2024.12</span>
+                        <h4 class="d-inline-block ms-3">中国电源学会第二届电力电子创作大赛</h4>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="badge bg-success me-2">专项奖（科普视频）</span>
+                        <span class="badge bg-primary">一等奖</span>
+                        <p class="mt-2 text-muted">基于LLC谐振变换器的充电均衡器设计</p>
+                    </div>
+                </div>
+        
+                <!-- 2022年奖项 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-year">2022.12</span>
+                        <h4 class="d-inline-block ms-3">第五届创新创业大会科普专场</h4>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="badge bg-warning text-dark">科普金星奖</span>
+                        <ul class="mt-2">
+                            <li>「上科大+」组静态作品赛道</li>
+                            <li>电池均衡技术科普展示系统设计</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <!-- 2021年奖项 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-year">2021.12</span>
+                        <h4 class="d-inline-block ms-3">第四届创新创业大会科普专场</h4>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="badge bg-info">优秀作品奖</span>
+                        <p class="mt-2">基于Buck-Boost的电池均衡技术演示装置</p>
+                    </div>
+                </div>
+        
+                <!-- 2019年奖项 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <span class="timeline-year">2019.08</span>
+                        <h4 class="d-inline-block ms-3">"TI杯"全国大学生电子设计竞赛</h4>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="badge bg-secondary">省二等奖</span>
+                        <p class="mt-2 text-muted">本科组电源类题目设计</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <div class="mb-3">
+                <a href="#" class="text-white mx-3"><i class="fab fa-github fa-2x"></i></a>
+                <a href="#" class="text-white mx-3"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+            <p class="mb-0">© 2024 陆以清 | 累计访问量 <span id="visitorCount">1024</span></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 访问量计数器
+        if(localStorage.getItem('visitorCount')) {
+            let count = parseInt(localStorage.getItem('visitorCount')) + 1;
+            localStorage.setItem('visitorCount', count);
+            document.getElementById('visitorCount').textContent = count;
+        } else {
+            localStorage.setItem('visitorCount', 1);
+        }
+    </script>
+</body>
+</html>
